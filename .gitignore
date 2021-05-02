@@ -14,4 +14,7 @@ products/data/wikidata_dicts/*
 pytorch/*.pyc
 utils/*.pyc
 
+__pycache__/
+.idea/
+*.emb
 

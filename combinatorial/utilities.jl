@@ -1,7 +1,7 @@
 # utilities.jl
 # various functions needed for combinatorial embeddings
 pushfirst!(PyVector(pyimport("sys")["path"]), "combinatorial")
-@pyimport utils.vis as vis
+# @pyimport utils.vis as vis
 @pyimport matplotlib.pyplot as plt
 
 # Reflection (circle inversion of x through orthogonal circle centered at a)
@@ -61,7 +61,7 @@ function add_children(p,x,edge_lengths, visualize, ax; verbose=false)
                 
         # R_mid contains the mid-points, so we can draw a bunch of edges
         if visualize && k > 0
-            vis.draw_geodesic(convert(Array{Float64,1}, points0[1,:]), convert(Array{Float64,1}, points0[k+1,:]), convert(Array{Float64,1}, midpoints[k+1,:]), ax)
+            # vis.draw_geodesic(convert(Array{Float64,1}, points0[1,:]), convert(Array{Float64,1}, points0[k+1,:]), convert(Array{Float64,1}, midpoints[k+1,:]), ax)
             plt.pause(0.05)
         end    
     end
@@ -133,7 +133,7 @@ function hyp_embedding(G_BFS, root, weighted, tau, visualize)
     ax = 0
     if visualize
         midpoints = zeros(BigFloat, d, 2)
-        fig, ax = vis.setup_plot(draw_circle=true)
+        # fig, ax = vis.setup_plot(draw_circle=true)
     end
     
     # place the children of the root:
@@ -141,7 +141,7 @@ function hyp_embedding(G_BFS, root, weighted, tau, visualize)
         T[1+root_children[i],:] = edge_lengths[i]*[cos(2*(i-1)*big(pi)/BigFloat(d)),sin(2*(i-1)*big(pi)/BigFloat(d))]
         if visualize
             midpoints[i,:] = edge_lengths[i]*[cos(2*(i-1)*big(pi)/BigFloat(d)),sin(2*(i-1)*big(pi)/BigFloat(d))]./big(2.0)        
-            vis.draw_geodesic(convert(Array{Float64,1}, T[1,:]), convert(Array{Float64,1}, T[1+root_children[i],:]), convert(Array{Float64,1}, midpoints[i,:]), ax)
+            # vis.draw_geodesic(convert(Array{Float64,1}, T[1,:]), convert(Array{Float64,1}, T[1+root_children[i],:]), convert(Array{Float64,1}, midpoints[i,:]), ax)
         end
     end
     
@@ -184,7 +184,7 @@ function hyp_embedding(G_BFS, root, weighted, tau, visualize)
         deleteat!(q, 1)
     end
 
-    vis.draw_plot()  
+    # vis.draw_plot()
 
     return T
 end
